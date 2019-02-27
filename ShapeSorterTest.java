@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -43,7 +45,27 @@ public class ShapeSorterTest
 	public void SortShapesDefaultTest()
 	{
 		// TODO: complete this...
+		ShapeSorter sorter = new ShapeSorter();
+		
+		Shape a = new Rectangle("TestRectangle", 2, 1);
+		Shape b = new EquilateralTriangle("TestETriangle", 4);
+		Shape c = new Square("TestSquare", 8);
+		Shape d = new Circle("TestCircle", 10);
+		
+		sorter.addShape(a);
+		sorter.addShape(b);
+		sorter.addShape(c);
+		sorter.addShape(d);
+	
+		sorter.sortShapes();
+		
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(0), a);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(1), b);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(2), c);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(3), d);
+		
 	}
+	
 
 	/**
 	 * Tests sorting by area ordering.
@@ -52,6 +74,25 @@ public class ShapeSorterTest
 	public void SortShapesAreaTest()
 	{
 		// TODO: complete this...
+		ShapeSorter sorter = new ShapeSorter();
+		
+		Shape a = new Rectangle("TestRectangle", 2, 1);
+		Shape b = new EquilateralTriangle("TestETriangle", 4);
+		Shape c = new Square("TestSquare", 8);
+		Shape d = new Circle("TestCircle", 10);
+		
+		sorter.addShape(a);
+		sorter.addShape(b);
+		sorter.addShape(c);
+		sorter.addShape(d);
+		
+		Comparator<Shape> comparator = null;
+		sorter.sortShapes(comparator);
+		
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(0), a);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(1), b);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(2), c);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(3), d);
 	}
 
 	/**
@@ -61,6 +102,24 @@ public class ShapeSorterTest
 	public void SortShapesPerimeterTest()
 	{
 		// TODO: complete this...
+		ShapeSorter sorter = new ShapeSorter();
+		
+		Shape a = new Rectangle("TestRectangle", 2, 1);
+		Shape b = new EquilateralTriangle("TestETriangle", 4);
+		Shape c = new Square("TestSquare", 8);
+		Shape d = new Circle("TestCircle", 10);
+		
+		sorter.addShape(a);
+		sorter.addShape(b);
+		sorter.addShape(c);
+		sorter.addShape(d);
+	
+		sorter.sortShapes();
+		
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(0), a);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(1), b);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(2), c);
+		Assert.assertEquals("Shapes sorted incorrectly...", sorter.shapes.get(3), d);
 	}
 
 	/**
@@ -70,5 +129,18 @@ public class ShapeSorterTest
 	public void ToStringTest()
 	{
 		// TODO: complete this...
+		ShapeSorter sorter = new ShapeSorter();
+		
+		Shape A = new Rectangle("TestRectangle", 2, 1);
+		Shape B = new EquilateralTriangle("TestETriangle", 4);
+		
+		sorter.addShape(A);
+		sorter.addShape(B);
+		
+		String output1 = String.format("%s:\t ID = %s\t area = %.3f\t perimeter = %.3f", A.getShapeType(), A.getId(), A.getArea(), A.getPerimeter());
+		String output2 = String.format("%s:\t ID = %s\t area = %.3f\t perimeter = %.3f", B.getShapeType(), B.getId(), B.getArea(), B.getPerimeter());
+		String output = output1 + output2;
+		
+		Assert.assertEquals("Incorrect toString.", output, sorter.toString());
 	}
 }
